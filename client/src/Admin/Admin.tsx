@@ -27,28 +27,28 @@ function Admin() {
     <form onSubmit={handleOnsubmit}>
             <div className='main-div'>
                 <div>
-                    <label className='label' htmlFor="productimage">Product Image</label>
+                    <label className='label' htmlFor="productimage">Product Image:</label>
                     <input className='input' onChange={(e)=>{handleOnchange(e)}} name='image' id="productimage" type="file" accept="image/*" />
                 </div>
 
                 <div>
-                    <label className='label' htmlFor='title'>Title</label>
+                    <label className='label' htmlFor='title'>Title:</label>
                     <input className='input' onChange={(e)=>{handleOnchange(e)}} name='title' id='title' type="text" />
                 </div>
                 <div>
-                    <label className='label' htmlFor='brand'>Brand</label>
+                    <label className='label' htmlFor='brand'>Brand:</label>
                     <input className='input' onChange={(e)=>{handleOnchange(e)}} name='brand' id='brand' type="text" />
                 </div>
                 <div>
-                    <label className='label' htmlFor='price'>Price</label>
+                    <label className='label' htmlFor='price'>Price:</label>
                     <input className='input' onChange={(e)=>{handleOnchange(e)}} name='price' id="price" type="Number" />
                 </div>
                 <div>
-                    <label className='label' htmlFor='des'>Description</label>
+                    <label className='label' htmlFor='des'>Description:</label>
                     <input className='input' onChange={(e)=>{handleOnchange(e)}} name='description' id="des" type="text" />
                 </div>
                 <div>
-                    <label className='label' htmlFor='cat'>Category</label>
+                    <label className='label' htmlFor='cat'>Category:</label>
                     <select name='Category' onChange={(e)=>{handleOnchange(e)}} >
                         <option value="clothes">clothes</option>
                         <option value="electronics">electronics</option>   

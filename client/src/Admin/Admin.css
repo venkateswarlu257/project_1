@@ -1,0 +1,37 @@
+*{
+    background-color:#9FE2BF;
+}
+
+.label{
+    align-items: center;
+    display: block;
+    font-family:serif;
+    font-weight:800;
+    font-size: 20px;
+}
+
+.main-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+.input{
+    padding: 10px;
+    border-radius: 5px;
+    border-width: 1px;
+    width: 300px;
+    margin-top: 5px;
+}
+
+button{
+    background-color: blue;
+    padding: 5px;
+    color: white;
+    margin: 10px;
+    border-radius: 5px;
+    border-width: 1px;
+
+}
+

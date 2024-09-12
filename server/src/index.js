@@ -2,7 +2,7 @@ import express, { response } from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
-
+import userRouter from "./routers/userRouter.js"
 import ProductsModel from "./models/ProductsModel.js"
 import multer from 'multer'
 
@@ -15,6 +15,8 @@ dotenv.config();
 mongoose.connect("mongodb://localhost:27017/myTestMongoDB")
     .then(() => console.log('DB connection established'))
     .catch(err => console.error('DB connection error:', err));
+
+    app.use(userRouter)
 
     const storage = multer.diskStorage({
         destination:"../client/src/Images",

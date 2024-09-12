@@ -17,7 +17,7 @@ mongoose.connect("mongodb://localhost:27017/myTestMongoDB")
     .catch(err => console.error('DB connection error:', err));
 
     const storage = multer.diskStorage({
-        destination:"../client/public/Images",
+        destination:"../client/src/Images",
         filename:(req,file,cb) => {
             return cb(null,`${Date.now()}${file.originalname}`)
         }

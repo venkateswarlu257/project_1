@@ -1,0 +1,44 @@
+ .card{
+    display: flex;
+    flex-flow: row wrap;
+    /* justify-content: space-around; */
+    gap: 5px;  
+    /* flex-wrap: wrap;  */
+}
+
+p{  
+    margin: 0;
+    padding: 0;
+}
+
+.SingleCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: solid 2px black;
+    height: 330px;
+    width: 230px;
+    margin: 3px;
+}
+
+.Card-Image1{
+    width: 180px;
+    height: 140px;
+    margin-top: 10px;
+    text-align: center;
+    object-fit: contain;
+}
+
+.Card-Button {
+    margin-top: auto; /* Pushes the button to the bottom */
+    padding: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.rr{
+    background-color: aqua;
+}

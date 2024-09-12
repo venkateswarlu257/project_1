@@ -4,7 +4,6 @@ import axios from 'axios'
 
 function Admin() {
 
-
     const [image, setImage] = useState<File | null>(null);
     const [title, setTitle] = useState<string>('');
     const [brand, setBrand] = useState<string>('');
@@ -32,9 +31,12 @@ function Admin() {
         formData.append("price", price);
         formData.append("category", category);
         formData.append("description", description); 
+        console.log(image)
 
         axios.post('http://localhost:5000/postproducts', formData)
-            .then(response => alert('Upload Successfully'))
+            .then(response =>  alert('Upload Successfully')
+        )
+           
             .catch(error => {
                 console.log('Error uploading:', error);
                 alert('Upload failed. Please try again.');
@@ -95,4 +97,3 @@ function Admin() {
 };
 
 export default Admin
-

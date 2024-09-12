@@ -42,3 +42,11 @@ p{
 .rr{
     background-color: aqua;
 }
+.cart{
+    padding: 20px;
+    width: 96%;
+}
+.img{
+    height: 60vh;
+    width: 100%;
+}

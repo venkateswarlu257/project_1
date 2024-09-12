@@ -1,7 +1,10 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import Slider from "react-slick";
 import Category from '../Category'
 import EachCard from '../EachCard/Index'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 import './Index.css'
 
 interface Props{
@@ -49,8 +52,25 @@ function Home() {
 
        console.log(cart)
 
+       var settings = {
+        dots: true,
+        Infinite:false,
+        speed:300,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      };
+
   return (
     <>
+    <div className='cart'>
+    <Slider {...settings}>
+        <div><img className='img' src="https://assets.ccbp.in/frontend/react-js/ecommerce/clothes-cap.png" alt="1"/></div>
+        <div><img className='img' src="https://assets.ccbp.in/frontend/react-js/ecommerce/clothes-hoodie.png" alt="3"/></div>
+        <div><img className='img' src="https://assets.ccbp.in/frontend/react-js/ecommerce/clothes-jacket.png" alt="4"/></div>
+    </Slider>
+    </div>
     <Category/>
    {onClickCards?
    <div>

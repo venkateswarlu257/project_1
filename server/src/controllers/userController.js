@@ -17,6 +17,7 @@ const RegisterUser =  async (request, response) => {
             username,
             email,
             password:md5(password),
+            
             // confirmpassword:md5(confirmpassword),
         })
         await newUser.save()

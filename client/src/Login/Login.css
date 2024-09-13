@@ -1,0 +1,8 @@
+.logindiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.signUp{
+    margin-left: 5px;
+}

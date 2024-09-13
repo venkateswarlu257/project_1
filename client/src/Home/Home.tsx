@@ -65,10 +65,11 @@ function Home() {
             <div onClick={()=>onClickCard(pro)}>
                 
             <img className='Card-Image1' src={require(`../../src/Images/${pro.image}`)} alt="imagerrrr" />
-        
+    
                 <p><b>Title:</b>{pro.title}</p>
                 <p><b> brand:</b>{pro.brand}</p>
                 <p><b>category:</b>{pro.category}</p>
+                
             </div> 
             <button className='Card-Button' onClick={()=>{handleCart(pro)}}>Add to Cart</button> 
              </div>

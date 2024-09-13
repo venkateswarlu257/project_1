@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Admin from './Admin/Admin';
+import LoginView from './Views/LoginView';
 import { NavBar } from './NavBar/Index';
-import Home from './Home/Home';
+import Register from './Register/Register';
 
 
 function App() {
@@ -10,10 +10,9 @@ function App() {
    
     <div className="App">
       <BrowserRouter>
-        <NavBar/>
+      <NavBar/>
         <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/addproduct' element={<Admin/>}/>
+          <Route path='/login' element={<LoginView/>}/>
         </Routes>
       </BrowserRouter>
     </div>

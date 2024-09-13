@@ -44,11 +44,12 @@ function Admin() {
     };
 
     return (
+        <div className='adminInput'>
         <form className="sign-up-form" onSubmit={onSubmit}>
             <h1 className='head'>Upload Your Product</h1>
 
             <label className="input-label" htmlFor="image">Uplode Product Image</label>
-            <input type="file" accept="image/*" id="image" onChange={handleChange} />
+            <input  type="file" accept="image/*" id="image" onChange={handleChange} />
 
             <label className="input-label" htmlFor="title">Product Title</label>
             <input 
@@ -77,7 +78,7 @@ function Admin() {
             onChange={e => setPrice(e.target.value)} />
 
             <label className="input-label" htmlFor="category">Product Category</label>
-            <select className="input-filed" id="category" value={category}
+            <select className="input-file" id="category" value={category}
                 onChange={e => setCategory(e.target.value)}>
                 <option value="">Select Category</option>
                 <option>clothes</option>
@@ -89,10 +90,12 @@ function Admin() {
 
             <label className="input-label" htmlFor="description">Product Description</label>
             <input className="input-filed" type="text" id="description" value={description}
-                onChange={e => setDescription(e.target.value)} />
+                onChange={e => setDescription(e.target.value)} /><br/><br/>
 
             <button type="submit" className="button">Upload</button>
         </form>
+        
+        </div>
     );
 };
 

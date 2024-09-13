@@ -1,7 +1,6 @@
 import express, { response } from 'express';
-import mongoose from 'mongoose';
 import cors from 'cors';
-import dotenv from 'dotenv';
+import DBconnection from './config/db.js';
 import userRouter from "./routers/userRouter.js"
 import ProductsModel from "./models/ProductsModel.js"
 import multer from 'multer'
@@ -11,10 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-dotenv.config();
-mongoose.connect("mongodb://localhost:27017/myTestMongoDB")
-    .then(() => console.log('DB connection established'))
-    .catch(err => console.error('DB connection error:', err));
+DBconnection()
 
     app.use(userRouter)
 

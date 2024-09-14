@@ -18,6 +18,9 @@ const createUser =  async (userData) => {
             email:userData.email,
             password:md5(userData.password),
             role:userData.role,
+            createdBy: userData.createdBy,
+            permissions: userData.permissions 
+            
         })
         await newUser.save()
         response.status(200).send('Registered Successfully')  

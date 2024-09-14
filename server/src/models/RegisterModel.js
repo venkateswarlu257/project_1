@@ -33,10 +33,8 @@ const RegisterSchema = new mongoose.Schema({
             D: {type:Number, required: true},
         },
         
-    },
-    createdAt: {type: String, required: true},
-    updateAt: {type: String, required: true}
-})
+    }
+},{ timestamps: true })
 
 const RegisterModel = mongoose.model('Registeruser',RegisterSchema)
 

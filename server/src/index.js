@@ -2,6 +2,7 @@ import express, { response } from 'express';
 import cors from 'cors';
 import DBconnection from './config/db.js';
 import userRouter from "./routers/userRouter.js"
+// import productsRouter from './routers/productsRouter.js';
 import ProductsModel from "./models/ProductsModel.js"
 import multer from 'multer'
 
@@ -13,6 +14,7 @@ app.use(cors());
 DBconnection()
 
     app.use(userRouter)
+    // app.use(productsRouter)
 
     const storage = multer.diskStorage({
         destination:"../client/src/Images",

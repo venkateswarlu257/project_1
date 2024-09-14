@@ -20,9 +20,10 @@ function LoginView() {
     
     const tokenStr=JSON.stringify(token)
 
-     const decoded = jwtDecode(tokenStr);
-    console.log(decoded)
-   
+     const decoded:any = jwtDecode(tokenStr);
+     Cookies.set('loginid', decoded.id)
+     console.log(decoded.id)
+  
 };
 
   const handleonSubmit=async (e:any)=>{

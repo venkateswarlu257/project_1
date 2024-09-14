@@ -2,66 +2,40 @@ import e from "express";
 import RegisterModel from "../models/RegisterModel.js";
 import jwt from "jsonwebtoken"
 import md5 from "md5"
+import { createUser,validateUser,grtProfile,userUpdate,userDelete } from "../services/userServices.js";
 
-const RegisterUser =  async (request, response) => {
+const registerUser = async (request,response) => {
     try{
-        const {username, email,password,confirmpassword} = request.body;
-        let exist = await RegisterModel.findOne({email})
-        if(exist){
-            return response.status(400).send('User Already Exist')
-        }
-        if(password !== confirmpassword){
-            return response.status(400).send('Password are not matching')
-        }
-        let newUser = new RegisterModel({
-            username,
-            email,
-            password:md5(password),
-            
-            // confirmpassword:md5(confirmpassword),
-        })
-        await newUser.save()
-        response.status(200).send('Registered Successfully')
-
+        const newUser = await createUser(request.body)
+        response.send(newUser)
     }catch(err){
-        console.log(err)
-        return response.status(500).send('internal Server Error')
+        response.send(err)
     }
 }
 
-const LoginUser = async (request,response) => {
+const loginUser = async (request,response) => {
     try{
         const {email,password} = request.body;
-        let exist = await RegisterModel.findOne({email:email});
-        if(!exist){
-            return response.status(400).send('User Not Found')
+        const jwtToken = await validateUser(email,password)
+        if(!jwtToken){
+            response.send('error')
         }
-        if(exist.password !== md5(password)){
-            return response.status(400).send(`Password Not Match`)
-        }
-        let payload = {
-            id : exist?.id,
-            username:exist?.username,
-            email:exist?.email
-        }
-        const jwtToken = jwt.sign(payload,'MY_SECRET_TOKEN')
         response.send({jwtToken})
     }
-    catch(err){
-        console.log(err)
-        return response.status(500).send('Server Error')
+    catch(message){
+        response.status(500).send({ message: 'Error updating user', error: error.message });
     }
 }
 
- const UserProfile = async(request,response) => {
-    let jwtToken
-    const authHeader = request.headers["authorization"];
-    if (authHeader !== undefined) {
-        jwtToken = authHeader.split(" ")[1];
+ const userProfile = async(request,response) => {
+    try{
+        const authHeader = await grtProfile(request.headers["authorization"])
+        response.send(authHeader);
     }
-    const decoded = jwt.verify(jwtToken, "MY_SECRET_TOKEN");  
-    const username = decoded
-    response.send(username);
+    catch(message){
+        response.status(500).send({ message: 'Error updating user', error: error.message });
+    }
+
 }
 
 const GetUser = async (request,response) => {
@@ -76,17 +50,23 @@ const GetUser = async (request,response) => {
 }
 
 const UpdateUser = async(request,response) => {
-    const result = await RegisterModel.updateOne({_id:request?.params?.id},{
-        username: request.body.username,
-        email: request.body.email,
-        password: md5(request.body.password)
-    })
-    response.send(result)
+    try {
+        const { id } = request.params;
+        const results = await userUpdate(id, request.body);
+        response.status(200).send({ message: 'User updated successfully', data: results });
+    } catch (error) {
+        response.status(500).send({ message: 'Error updating user', error: error.message });
+    }
 }
 
 const DeleteUser = async (request,response) => {
-    const result = await RegisterModel.deleteOne({_id:request?.params?.id})
-    response.send(result)
-}
+    try {
+        const { id } = request.params;
+        const results = await userDelete(id);
+        response.status(200).send({ message: 'User Deletr successfully', data: results });
+    } catch (error) {
+        response.status(500).send({ message: 'Error updating user', error: error.message });
+    }
+} 
  
-export {LoginUser,RegisterUser,UserProfile,GetUser,UpdateUser,DeleteUser}
+export {registerUser,loginUser,userProfile,GetUser,UpdateUser,DeleteUser}

@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import LoginView from './Views/LoginView';
 import { NavBar } from './NavBar/Index';
-import Register from './Register/Register';
+import RegisterView from './Views/RegisterView';
 
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <NavBar/>
+      <RegisterView/>
         <Routes>
           <Route path='/login' element={<LoginView/>}/>
         </Routes>

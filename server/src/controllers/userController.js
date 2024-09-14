@@ -1,13 +1,10 @@
-import e from "express";
 import RegisterModel from "../models/RegisterModel.js";
-import jwt from "jsonwebtoken"
-import md5 from "md5"
 import { createUser,validateUser,grtProfile,userUpdate,userDelete } from "../services/userServices.js";
 
 const registerUser = async (request,response) => {
     try{
         const newUser = await createUser(request.body)
-        response.send(newUser)
+        response.status(200).send('Registered Successfully')
     }catch(err){
         response.send(err)
     }

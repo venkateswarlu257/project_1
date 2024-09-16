@@ -22,8 +22,7 @@ const createUser =  async (userData) => {
             permissions: userData.permissions 
             
         })
-        await newUser.save()
-        response.status(200).send('Registered Successfully')  
+        await newUser.save()  
 }
 
 const validateUser = async (email,password) => {
@@ -80,3 +79,16 @@ const userDelete = async (id) => {
 }
 
 export {createUser, validateUser, grtProfile, userUpdate,userDelete}
+
+// 01JA2401
+// 01FE2402
+// 01MR2403
+// 01AP2404
+// 01MY2405
+// 01JN2406
+// 01JY2407
+// 01AU2408
+// 01SE2409
+// 01OC2410
+// 01NO2411
+// 01DE2412

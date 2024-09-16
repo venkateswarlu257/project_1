@@ -14,7 +14,7 @@ interface Props{
     price: String,
     category: String,
     description: String,
-    // "http://localhost:5000/getproducts"
+   
 }
 
 function Home() {

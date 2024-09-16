@@ -1,6 +1,9 @@
-import axios from 'axios';
 import Cookies from 'js-cookie';
 import React, { useEffect, useState } from 'react'
+import MASideBar from '../MASideBar/MASideBar';
+import { register } from '../../Services/Service';
+import "./MARegisterView.css"
+
 
 type PermissionField = 'R' | 'W' | 'D';
 type PermissionCategory = 'products' | 'orders' | 'employee' | 'prodCategory' | 'prodSubCategory';
@@ -13,11 +16,12 @@ interface Permissions {
   prodSubCategory: { R: number; W: number; D: number };
 }
 
-function RegisterView() {
+function MARegisterView() {
     const [formData, setFormData] = useState({
         username: '',
         email: '',
         password: '',
+        confirmpassword:'',
         role: '',
         createdBy: '',
         permissions: {
@@ -54,142 +58,207 @@ function RegisterView() {
         e.preventDefault();
     
         try {
-          const response = await axios.post('http://localhost:5000/register', formData);
-          console.log(response.data);
+            //  const response = await axios.post('http://localhost:5000/register', formData);
+          const response =register(formData)
+          console.log(response);
+          console.log(formData)
           alert('User registered successfully');
         } catch (error) {
           console.error('Error registering user', error);
           alert('Failed to register user');
         }
-      };
+      }
     
+      // try {
+      //   const response = await fetch('http://localhost:5000/register', {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //     body: JSON.stringify(formData),
+      //   });
+      
+      //   if (!response.ok) {
+      //     throw new Error(`Failed to register user: ${response.statusText}`);
+      //   }
+      
+      //   const data = await response.json();
+      //   console.log(data);
+      //   console.log(formData);
+      //   alert('User registered successfully');
+      // } catch (error) {
+      //   console.error('Error registering user:', error);
+      //   alert('Failed to register user');
+      // }
+      // }
+      
       return (
-        <form onSubmit={handleSubmit}>
+        <div className='rrrr'>
+       
+         <div className='SideBar'><MASideBar/></div>
+
+         <div className='registiondiv'>
+         <form className='registionform' onSubmit={handleSubmit}>
           <h2>Register User</h2>
     
+           <div>
           <label>Username:</label>
-          <input type="text" name="username" value={formData.username} onChange={handleChange} required />
-    
+          <input className='input' type="text" name="username" value={formData.username} onChange={handleChange} required />
+          </div>
+
+          <div>
           <label>Email:</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-    
+          <input className='input' type="email" name="email" value={formData.email} onChange={handleChange} required />
+          </div>
+
+          <div>
           <label>Password:</label>
-          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+          <input className='input' type="password" name="password" value={formData.password} onChange={handleChange} required />
+          </div>
+
+          <div>
+          <label>confirmpassword:</label>
+          <input className='input' type="password" name="confirmpassword" value={formData.confirmpassword} onChange={handleChange} required />
+          </div>
            
            <div>
           <label>Role:</label>
-          <select name="role" value={formData.role} onChange={handleChange} required>
+          <select className='input' name="role" value={formData.role} onChange={handleChange} required>
+          <option value="">Select Category</option>
             <option value="admin">Admin</option>
             <option value="employee">Employee</option>
           </select>
-          </div>
+         </div>
     
       
           <h3>Permissions</h3>
     
           <h4>Products</h4>
-          <label>Read:</label>
+          <label htmlFor='Productsread'>Read:</label>
           <input
             type="checkbox"
+            id='Productsread'
             checked={formData.permissions.products.R === 1}
             onChange={() => handlePermissionChange('products', 'R')}
           />
-          <label>Write:</label>
+          <label htmlFor='ProductsWrite'>Write:</label>
           <input
             type="checkbox"
+            id='ProductsWrite'
             checked={formData.permissions.products.W === 1}
             onChange={() => handlePermissionChange('products', 'W')}
           />
-          <label>Delete:</label>
+          <label htmlFor='ProductsDelete'>Delete:</label>
           <input
             type="checkbox"
+            id='ProductsDelete'
             checked={formData.permissions.products.D === 1}
             onChange={() => handlePermissionChange('products', 'D')}
           />
     
           <h4>Orders</h4>
-          <label>Read:</label>
+          <label htmlFor='OrdersRead'>Read:</label>
           <input
+          id='OrdersRead'
             type="checkbox"
             checked={formData.permissions.orders.R === 1}
             onChange={() => handlePermissionChange('orders', 'R')}
           />
-          <label>Write:</label>
+
+          <label htmlFor='OrdersWrite'>Write:</label>
           <input
             type="checkbox"
+            id='OrdersWrite'
             checked={formData.permissions.orders.W === 1}
             onChange={() => handlePermissionChange('orders', 'W')}
           />
-          <label>Delete:</label>
+          <label htmlFor='OrdersDelete'>Delete:</label>
           <input
             type="checkbox"
+            id='OrdersDelete'
             checked={formData.permissions.orders.D === 1}
             onChange={() => handlePermissionChange('orders', 'D')}
           />
     
-          <h4>Employee</h4>
-          <label>Read:</label>
+          <h4 >Employee</h4>
+          <label htmlFor='EmployeeRead'>Read:</label>
           <input
             type="checkbox"
+            id='EmployeeRead'
             checked={formData.permissions.employee.R === 1}
             onChange={() => handlePermissionChange('employee', 'R')}
           />
-          <label>Write:</label>
+
+          <label htmlFor='EmployeeWrite'>Write:</label>
           <input
             type="checkbox"
+            id='EmployeeWrite'
             checked={formData.permissions.employee.W === 1}
             onChange={() => handlePermissionChange('employee', 'W')}
           />
-          <label>Delete:</label>
+
+          <label htmlFor='EmployeeDelete'>Delete:</label>
           <input
             type="checkbox"
+            id='EmployeeDelete'
             checked={formData.permissions.employee.D === 1}
             onChange={() => handlePermissionChange('employee', 'D')}
           />
     
           <h4>Product Category</h4>
-          <label>Read:</label>
+          <label htmlFor='Product CategoryRead'>Read:</label>
           <input
             type="checkbox"
+            id='Product CategoryRead'
             checked={formData.permissions.prodCategory.R === 1}
             onChange={() => handlePermissionChange('prodCategory', 'R')}
           />
-          <label>Write:</label>
+          <label htmlFor='Product CategoryWrite'>Write:</label>
           <input
             type="checkbox"
+            id='Product CategoryWrite'
             checked={formData.permissions.prodCategory.W === 1}
             onChange={() => handlePermissionChange('prodCategory', 'W')}
           />
-          <label>Delete:</label>
+          <label htmlFor='Product CategoryDelete'>Delete:</label>
           <input
             type="checkbox"
+            id='Product CategoryDelete'
             checked={formData.permissions.prodCategory.D === 1}
             onChange={() => handlePermissionChange('prodCategory', 'D')}
           />
     
           <h4>Product SubCategory</h4>
-          <label>Read:</label>
+          <label htmlFor='Product SubCategoryRead'>Read:</label>
           <input
             type="checkbox"
+            id='Product SubCategoryRead'
             checked={formData.permissions.prodSubCategory.R === 1}
             onChange={() => handlePermissionChange('prodSubCategory', 'R')}
           />
-          <label>Write:</label>
+
+          <label htmlFor='Product SubCategoryWrite'>Write:</label>
           <input
             type="checkbox"
+            id='Product SubCategoryWrite'
             checked={formData.permissions.prodSubCategory.W === 1}
             onChange={() => handlePermissionChange('prodSubCategory', 'W')}
           />
-          <label>Delete:</label>
+          <label htmlFor='Product SubCategoryDelete'>Delete:</label>
           <input
             type="checkbox"
+            id='Product SubCategoryDelete'
             checked={formData.permissions.prodSubCategory.D === 1}
             onChange={() => handlePermissionChange('prodSubCategory', 'D')}
           />
     
           <button type="submit">Register</button>
         </form>
+         </div>
+        </div>
       );
     };
     
-export default RegisterView
+export default MARegisterView
+
+

@@ -1,0 +1,40 @@
+.registionform{
+    border: solid 0.1px #ccc;
+    /* height: 100hv; */
+    width: 70%;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+ 
+}
+
+/* .registioninput{
+    padding: 8px;
+    width: 250px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-width: 1px;
+    border-radius: 5px;
+} */
+
+.input{
+    padding: 8px;
+    display: block;
+    width: 250px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-width: 1px;
+    border-radius: 5px;
+}
+
+.rrrr{
+    display: flex;
+}
+
+.registiondiv {
+    width: 100%;
+    display: flex;
+    align-items: center; 
+    justify-content: center;  
+    padding-left: 70px;
+}

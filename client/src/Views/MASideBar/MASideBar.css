@@ -1,0 +1,39 @@
+.MASB {
+    height: 150vh; /* Use 'vh' instead of 'vb' for viewport height */
+    border: 1px solid #ccc;
+    width: 300px;
+}
+
+.MASB ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+   
+}
+
+.MASB ul li {
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    border: solid 0.01px black;
+    box-sizing: border-box;
+}
+
+.MASB ul li:hover {
+    background-color: blue;
+}
+
+.MASB a {
+    text-decoration: none;
+    color: black;
+    display: block; 
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.MASB a:hover {
+    color: white;
+}

@@ -1,0 +1,19 @@
+/* input{
+    padding: 8px;
+    width: 250px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-width: 1px;
+    border-radius: 5px;
+} */
+
+button{
+    width: 90%;
+    padding: 10px;
+    background-color: #3498db;
+    columns: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}

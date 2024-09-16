@@ -12,5 +12,13 @@ export const loginUser = async (data: any) => {
   }
 };
 
-// `${API_URL}/login`
+export const register = async (data: any) => {
+  try {
+    const response = await axios.post(`${API_URL}/register`, data);
+    return response.data;
+  } catch (error) {
+    console.error("Login error:", error);
+    throw error; 
+  }
+};
 

@@ -1,0 +1,56 @@
+.card{
+    display: flex;
+    flex-flow: row wrap;
+    /* justify-content: space-around; */
+    gap: 5px;  
+    /* flex-wrap: wrap;  */
+    
+}
+
+p{  
+    margin: 0;
+    padding: 0;
+}
+
+.SingleCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: solid 2px black;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    height: 330px;
+    width: 230px;
+    margin: 3px;
+ 
+}
+
+.Card-Image1{
+    width: 180px;
+    height: 140px;
+    margin-top: 10px;
+    text-align: center;
+    object-fit: contain;
+}
+
+.Card-Button {
+    margin-top: auto;
+    padding: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    width: 230px;
+}
+
+.rr{
+    background-color: aqua;
+}
+.cart{
+    padding: 20px;
+    width: 96%;
+}
+.img{
+    height: 60vh;
+    width: 100%;
+}

@@ -1,0 +1,9 @@
+.m-nav{
+  position: sticky;
+  height: 60px;
+  z-index: 1000;
+  /* position: fixed; */
+}
+.logo{
+    height: 10vh;
+}

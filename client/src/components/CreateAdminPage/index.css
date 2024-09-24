@@ -1,0 +1,13 @@
+.create-form-container{
+    width: 80%;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    height: 469.5px;
+    overflow-y: scroll;
+    scrollbar-width: none; 
+  -ms-overflow-style: none;
+}
+.create-admin-container{
+    display: flex;
+}

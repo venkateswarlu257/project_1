@@ -1,46 +1,50 @@
 import { request } from "express";
 import RegisterModel from "../models/RegisterModel.js";
 import jwt from "jsonwebtoken"
-import md5 from "md5"
+import argon2 from "argon2";
 
 import {generateToken} from '../utils/jwtUtils.js'
 
 const createUser =  async (userData) => {
         let exist = await RegisterModel.findOne({email:userData.email})
         if(exist){
-            return response.status(400).send('User Already Exist')
+            return {message:"User Already Exist",status:200}
         }
-        if(userData.password !== userData.confirmpassword){
-            return response.status(400).send('Password are not matching')
-        }
+        const hashedPassword = await argon2.hash(userData.password);
         let newUser = new RegisterModel({
             username:userData.username,
             email:userData.email,
-            password:md5(userData.password),
+            password:hashedPassword,
             role:userData.role,
             createdBy: userData.createdBy,
             permissions: userData.permissions 
             
         })
-        await newUser.save()  
+        const result = await newUser.save() 
+        return {message:"Registered Successfully",status:200,}
 }
 
 const validateUser = async (email,password) => {
     let exist = await RegisterModel.findOne({email:email});
     if(!exist){
-        return response.status(400).send('User Not Found')
+        return {message:'User Not Found',status:401}
     }
-    if(exist.password !== md5(password)){
-        return response.status(400).send(`Password Not Match`)
+    const isPasswordCorrect = await argon2.verify(exist.password, password);
+    if(!isPasswordCorrect){
+        return {message:"Password Not Match",status:401}
     }
-    // let payload = {
-    //     id : exist?.id,
-    //     username:exist?.username,
-    //     email:exist?.email,
-    //     // role:exist?.role
-    // }
-    // return jwt.sign(payload,"MY_SECRET_TOKEN")
-    return generateToken(exist)
+    const jwtToken =  generateToken(exist)
+    return{jwtToken,status: 200}
+}
+
+const userlist = async(request) => {
+    let query = {};
+    if(request?.query?.createdBy) {
+        const createdBy = Array.isArray(request.query.createdBy) ? request.query.createdBy : [request.query.createdBy];
+        query.createdBy = { $in: createdBy };
+    }
+    let userDetails = await RegisterModel.find(query)
+    return userDetails
 }
 
 const grtProfile = async (data) => {
@@ -60,10 +64,12 @@ const userUpdate = async (id,data) => {
             {
                 username: data.username,
                 email: data.email,
-                password: md5(data.password)
+                // password: md5(data.password),
+                permissions: data.permissions
+
             }
         );
-        return result;
+        return {message:"update Successfully",status:200,};
     } catch (error) {
         throw new Error('Failed to update user');
     } 
@@ -72,13 +78,13 @@ const userUpdate = async (id,data) => {
 const userDelete = async (id) => {
     try {
         const result = await RegisterModel.deleteOne({_id:id})
-        return result
+        return {message:"Delete Successfully"}
     } catch (error) {
         throw new Error('Failed to Delete user');
     } 
 }
 
-export {createUser, validateUser, grtProfile, userUpdate,userDelete}
+export {createUser, validateUser, userlist, grtProfile, userUpdate,userDelete}
 
 // 01JA2401
 // 01FE2402

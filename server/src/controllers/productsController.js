@@ -15,8 +15,8 @@ const upload = multer({ storage: storage })
 
 const postProduct = async (request,response) => {
         const image_filename = `${request.file.filename}`;
-        const result = await createProducts(request.body)
-        response.send('Product Add')
+        const result = await createProducts(image_filename,request.body)
+        return response.send(result)
 }
 const getProducts = async (request,response) => {
     try{

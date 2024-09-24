@@ -10,6 +10,7 @@ const createProducts =  async (image_filename,data) => {
             description:data.description,
         })
         await newProducts.save()
+        return {message:"Product add Successfully",status:200}
 
 }
 

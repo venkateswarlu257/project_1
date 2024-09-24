@@ -22,12 +22,12 @@ const RegisterSchema = new mongoose.Schema({
             W: {type:Number, required: true},
             D: {type:Number, required: true},
         },
-        prodCategory: {
+        productcategory: {
             R: {type:Number, required: true},
             W: {type:Number, required: true},
             D: {type:Number, required: true},
         },
-        prodSubCategory: {
+        productsubcategory: {
             R: {type:Number, required: true},
             W: {type:Number, required: true},
             D: {type:Number, required: true},

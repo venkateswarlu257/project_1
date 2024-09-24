@@ -1,3 +1,4 @@
+
 .sign-up-container{
     display: flex;
     justify-content: center;
@@ -19,12 +20,12 @@
     margin-top: 16px;
     font-size: 13px;
 }
-
 .input-filed{
     width: 100%;
     padding: 5px;
     box-sizing: border-box;
 }
+
 .button{
     width: 100%;
     padding: 10px;
@@ -34,9 +35,6 @@
     border-radius: 4px;
     cursor: pointer;
     margin-top: 20px;
-}
-.button:hover{
-    background-color: #2980b9;
 }
 .error{
     color: red;

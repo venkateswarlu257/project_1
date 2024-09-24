@@ -13,6 +13,7 @@ import AddProduct from './components/AddProduct';
 import SignUpForm from './components/SignUpForm';
 
 
+
 function App() {
   return (
    
@@ -39,7 +40,6 @@ function App() {
           <Route path='employee/addproduct' element={<AddProduct/>} />
 
           <Route path="*" element={<NotFound />} />
-
         </Routes>
       </BrowserRouter>
     </div>
